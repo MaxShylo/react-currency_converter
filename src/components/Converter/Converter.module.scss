@@ -1,0 +1,40 @@
+.Converter {
+  
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 30px;
+  background-color: #D9F8F4;
+  border-radius: 30px;
+  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+  width: 500px;
+  align-items: center;
+}
+
+.Title {
+  text-align: center;
+  color: #8900a1 ;
+}
+
+.Display {
+  position: relative;
+}
+
+.ConverterIcon {
+  position: absolute;
+  left: calc(50% - 25px / 2);
+  top: calc(50% - 25px / 2);
+  width: 25px;
+  height: 25px;
+}
+
+.Currency {
+  font-weight: bold;
+}
+
+.CurrencyContainer {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}

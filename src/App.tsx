@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import './App.scss';
+import { Header } from './components/Header';
+import { Converter } from './components/Converter';
+import { getRates } from './api/rates';
+import { Rates } from './types/Rates';
+import Flag from 'react-flagkit';
+import { SelectCurrency } from './components/SelectCurrency/SelectCurrency';
 
 function App() {
+  const [rates, setRates] = useState<Rates | null>();
+  // const [ratesForHryvnia, setRatesForHryvnia] = useState([]);
+
+  const formatNumber = useCallback((num: number) => num.toFixed(4), []);
+
+  const ratesForHryvnia = useMemo(() => {
+    if (rates) {
+      const rateEurToUah = rates.UAH;
+      const rateDollarToUah = 1 * rateEurToUah / rates.USD;
+
+      return {
+        'EUR': formatNumber(rateEurToUah),
+        'USD': formatNumber(rateDollarToUah),
+      }
+    }
+  }, [rates, formatNumber]);
+
+  const handleLoadRates = async () => {
+    try {
+      const ratesFromServer = await getRates();
+
+      setRates(ratesFromServer);
+    } catch {
+
+    }
+  }
+
+  useEffect(() => {
+    handleLoadRates();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header rates={ratesForHryvnia} />
+      <Converter rates={rates} />
     </div>
   );
 }
