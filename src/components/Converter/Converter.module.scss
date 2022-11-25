@@ -1,6 +1,6 @@
-@import '../../styles/variables';
-@import '../../styles/extends';
-@import '../../styles/mixins';
+@import "../../styles/variables";
+@import "../../styles/extends";
+@import "../../styles/mixins";
 
 .Converter {
   @extend %block-style;
@@ -8,13 +8,24 @@
   width: 500px;
   padding: 30px;
   align-items: center;
-  
+
   .Title {
     @extend %title-style;
   }
-  
+
   .Display {
     position: relative;
+  }
+
+  .Container {
+    display: flex;
+    gap: 50px;
+  }
+
+  .InputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .ConverterIcon {
@@ -23,10 +34,19 @@
 
     position: absolute;
   }
+}
 
-  .CurrencyContainer {
+@media (max-width: 600px) {
+  .Converter {
+    width: 350px;
+  }
+
+  .Container {
     display: flex;
-    align-items: flex-start;
-    gap: 15px;
+    flex-direction: column;
+  }
+
+  .ConverterIcon {
+    transform: rotate(90deg);
   }
 }

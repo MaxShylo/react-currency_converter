@@ -14,14 +14,16 @@ export const AmountInput: React.FC<Props> = ({
   convertBy,
 }) => {
   return (
-    <FormControl fullWidth variant="filled">
+    <FormControl variant="filled">
       <InputLabel htmlFor="filled-adornment-amount">
         {convertBy}
       </InputLabel>
       <FilledInput
+        
         id="filled-adornment-amount"
         type='number'
         value={amount}
+        inputProps={{style: { fontWeight: 'bold' }}}
         onChange={(event) => onChangeAmount(event, convertBy)}
         startAdornment={<InputAdornment position="start"></InputAdornment>}
         color={'secondary'}

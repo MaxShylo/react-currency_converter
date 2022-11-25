@@ -5,8 +5,11 @@ import { Convert } from '../../types/Convert';
 
 type Props = {
   currency: string,
-  onChangeCurrency: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, convertBy: Convert ) => void,
-  convertBy: Convert;
+  onChangeCurrency: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    convertBy: Convert
+  ) => void,
+  convertBy: Convert,
 };
 
 export const SelectCurrencyInput: React.FC<Props> = ({
@@ -25,7 +28,10 @@ export const SelectCurrencyInput: React.FC<Props> = ({
       helperText="Please select your currency"
     >
       {currencies.map((option) => (
-        <MenuItem key={option.value} value={option.value}>
+        <MenuItem
+          key={option.value}
+          value={option.value}
+        >
           {option.label}
         </MenuItem>
       ))}

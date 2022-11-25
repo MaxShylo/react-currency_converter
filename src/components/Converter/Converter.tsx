@@ -45,8 +45,6 @@ export const Converter: React.FC<Props> = ({ rates }) => {
   ) => {
     const currentCurrency = event.target.value;
 
-    console.log(event);
-
     switch (convertBy) {
       case Convert.From:
         setCurrencyFrom(currentCurrency);
@@ -75,33 +73,32 @@ export const Converter: React.FC<Props> = ({ rates }) => {
           color={'#8900a1'}
         />
         <Box
-          sx={{
-            display: 'grid',
-            rowGap: 2,
-            columnGap: 7,
-            gridTemplateColumns: 'repeat(2, 1fr)',
-          }}
+          className={classes.Container}
         >
-          <SelectCurrencyInput
-            currency={currencyFrom}
-            onChangeCurrency={handleCurrencyChange}
-            convertBy={Convert.From}
-          />
-          <SelectCurrencyInput
-            currency={currencyTo}
-            onChangeCurrency={handleCurrencyChange}
-            convertBy={Convert.To}
-          />
-          <AmountInput
-            amount={amoutFrom}
-            onChangeAmount={handleAmountChange}
-            convertBy={Convert.From}
-          />
-          <AmountInput
-            amount={amoutTo}
-            onChangeAmount={handleAmountChange}
-            convertBy={Convert.To}
-          />
+          <Box className={classes.InputContainer}>
+            <SelectCurrencyInput
+              currency={currencyFrom}
+              onChangeCurrency={handleCurrencyChange}
+              convertBy={Convert.From}
+            />
+            <AmountInput
+              amount={amoutFrom}
+              onChangeAmount={handleAmountChange}
+              convertBy={Convert.From}
+            />
+          </Box>
+          <Box className={classes.InputContainer}>
+            <SelectCurrencyInput
+              currency={currencyTo}
+              onChangeCurrency={handleCurrencyChange}
+              convertBy={Convert.To}
+            />
+            <AmountInput
+              amount={amoutTo}
+              onChangeAmount={handleAmountChange}
+              convertBy={Convert.To}
+            />
+          </Box>
         </Box>
       </Box>
     </section>
