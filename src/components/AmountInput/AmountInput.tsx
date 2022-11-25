@@ -20,6 +20,7 @@ export const AmountInput: React.FC<Props> = ({
       </InputLabel>
       <FilledInput
         id="filled-adornment-amount"
+        type='number'
         value={amount}
         onChange={(event) => onChangeAmount(event, convertBy)}
         startAdornment={<InputAdornment position="start"></InputAdornment>}

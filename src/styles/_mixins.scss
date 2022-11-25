@@ -1,0 +1,9 @@
+@mixin icon($size) {
+  width: $size;
+  height: $size;
+}
+
+@mixin centering($size) {
+  left: calc(50% - #{$size} / 2);
+  top: calc(50% - #{$size} / 2);
+}

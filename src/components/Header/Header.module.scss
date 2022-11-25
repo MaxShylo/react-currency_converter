@@ -1,17 +1,13 @@
+@import '../../styles/extends';
+
 .ExchangeRate {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
+  @extend %block-style;
+
   width: 300px;
   padding: 20px;
-  background-color: #D9F8F4;
-  border-radius: 30px;
-  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-
+ 
   .Title {
-    text-align: center;
-    color: #8900a1;
+    @extend %title-style;
   }
 
   .Display {

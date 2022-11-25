@@ -24,10 +24,6 @@ export const Converter: React.FC<Props> = ({ rates }) => {
   ) => {
     const currentAmount = event.target.value;
 
-    if (!(/^\d+$/.test(currentAmount))) {
-      return alert('Please, provide only digits value!!!');
-    }
-
     switch (convertBy) {
       case Convert.From:
         setAmoutFrom(currentAmount);
@@ -76,7 +72,6 @@ export const Converter: React.FC<Props> = ({ rates }) => {
             name: 'arrow-right-arrow-left',
             style: 'solid',
           })}
-          beatFade={false}
           color={'#8900a1'}
         />
         <Box

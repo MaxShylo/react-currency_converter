@@ -1,17 +1,16 @@
+@import '../../styles/variables';
+@import '../../styles/extends';
+@import '../../styles/mixins';
+
 .Converter {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+  @extend %block-style;
+
   width: 500px;
   padding: 30px;
-  background-color: #D9F8F4;
-  border-radius: 30px;
-  box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
-
+  align-items: center;
+  
   .Title {
-    
+    @extend %title-style;
   }
   
   .Display {
@@ -19,11 +18,10 @@
   }
 
   .ConverterIcon {
+    @include icon($icon-size);
+    @include centering($icon-size);
+
     position: absolute;
-    left: calc(50% - 25px / 2);
-    top: calc(50% - 25px / 2);
-    width: 25px;
-    height: 25px;
   }
 
   .CurrencyContainer {
@@ -32,8 +30,3 @@
     gap: 15px;
   }
 }
-
-
-
-
-
