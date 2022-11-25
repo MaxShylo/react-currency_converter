@@ -1,0 +1,25 @@
+.ExchangeFrom {
+  display: flex;
+  justify-content: space-between;
+
+  .Flag {
+    border-radius: 25%;
+  }
+
+  .Currency {
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .Rate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+  }
+}
+
+
+

@@ -1,17 +1,16 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './App.scss';
 import { Header } from './components/Header';
 import { Converter } from './components/Converter';
 import { getRates } from './api/rates';
 import { Rates } from './types/Rates';
-import Flag from 'react-flagkit';
-import { SelectCurrency } from './components/SelectCurrency/SelectCurrency';
+import { formatNumber } from './helpers/formatNumber';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function App() {
-  const [rates, setRates] = useState<Rates | null>();
-  // const [ratesForHryvnia, setRatesForHryvnia] = useState([]);
-
-  const formatNumber = useCallback((num: number) => num.toFixed(4), []);
+  const [rates, setRates] = useState<Rates | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const ratesForHryvnia = useMemo(() => {
     if (rates) {
@@ -23,15 +22,19 @@ function App() {
         'USD': formatNumber(rateDollarToUah),
       }
     }
-  }, [rates, formatNumber]);
+  }, [rates]);
 
   const handleLoadRates = async () => {
+    setIsLoading(true);
+
     try {
       const ratesFromServer = await getRates();
 
       setRates(ratesFromServer);
-    } catch {
-
+    } catch(error) {
+      alert(error);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -41,8 +44,22 @@ function App() {
 
   return (
     <div className="App">
-      <Header rates={ratesForHryvnia} />
-      <Converter rates={rates} />
+
+      {isLoading ? (
+        <>
+          <Backdrop
+            sx={{ color: '#fff' }}
+            open={isLoading}
+          >
+            <CircularProgress color="inherit" />
+          </Backdrop>
+        </>
+      ) : (
+        <>
+          <Header rates={ratesForHryvnia} />
+          <Converter rates={rates} />
+        </>
+      )}
     </div>
   );
 }
